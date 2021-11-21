@@ -1,5 +1,6 @@
 package com.example.keepthetime_20211121.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 
 import com.example.keepthetime_20211121.R
+import com.example.keepthetime_20211121.ViewFriendListActivity
 import com.example.keepthetime_20211121.databinding.FragmentMyProfileBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.utils.ContextUtil
@@ -44,6 +46,15 @@ class MyProfileFragment : BaseFragment() {
 
 
     override fun setEvents() {
+
+        binding.btnFriendList.setOnClickListener {
+
+            val myIntent = Intent(mContext,ViewFriendListActivity::class.java)
+            startActivity(myIntent)
+
+
+        }
+
 
     }
 
