@@ -33,8 +33,8 @@ class MainActivity : BaseActivity() {
     override fun setValues() {
 
         mvpa =  MainViewPagerAdapter(supportFragmentManager)
-        binding.mainViewpager.adapter = mvpa
-        binding.mainTabLayout.setupWithViewPager(binding.mainViewpager)
+        binding.mainViewPager.adapter = mvpa
+        binding.mainTabLayout.setupWithViewPager(binding.mainViewPager)
 
         getMyInfoFromServer()
 
