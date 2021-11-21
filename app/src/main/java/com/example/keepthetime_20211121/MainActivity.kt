@@ -58,6 +58,10 @@ class MainActivity : BaseActivity() {
                         Log.d("사용자토큰",basicResponse.data.token)
 
 
+                        Toast.makeText(mContext, "${basicResponse.data.user.nickname}님 환영합니다!",
+                            Toast.LENGTH_SHORT).show()
+
+
 
                     }
 
