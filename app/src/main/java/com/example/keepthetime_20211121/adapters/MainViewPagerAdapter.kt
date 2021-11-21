@@ -9,6 +9,15 @@ import com.example.keepthetime_20211121.fragments.ScheduleListFrgment
 class MainViewPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
     override fun getCount() = 2
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        return  when (position){
+
+            0-> "내 일정 목록"
+            else -> "프로필 관리"
+
+        }
+    }
+
 
     override fun getItem(position: Int): Fragment {
 
