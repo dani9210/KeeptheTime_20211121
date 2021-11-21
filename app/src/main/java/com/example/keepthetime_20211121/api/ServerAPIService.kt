@@ -3,10 +3,7 @@ package com.example.keepthetime_20211121.api
 import com.example.keepthetime_20211121.datas.BasicResponse
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface ServerAPIService {
 
@@ -32,6 +29,13 @@ interface ServerAPIService {
         @Field("password")  pw: String,
         @Field("nick_name")   nickname : String
     ):Call<BasicResponse>
+
+//    연습 - 내 정보 가져오기 API
+
+    @GET("/user")
+    fun getRequestMyInfo(
+        @Header("X-Http-Token") token : String
+    ) : Call<BasicResponse>
 
 
 }
