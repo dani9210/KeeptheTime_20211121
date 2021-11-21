@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 
 import com.example.keepthetime_20211121.R
 import com.example.keepthetime_20211121.databinding.FragmentMyProfileBinding
@@ -67,6 +68,9 @@ class MyProfileFragment : BaseFragment() {
                     val br = response.body()!!
 
                     Log.d("로그인한사람",br.data.user.nickname)
+                    binding.txtNickname.text = br.data.user.nickname
+
+                    Glide.with(mContext).load(br.data.user.profileImageURL).into(binding.imgProfile)
 
 
                 }
