@@ -42,7 +42,6 @@ interface ServerAPIService {
 
     @GET("/user")
     fun getRequestMyInfo(
-        @Header("X-Http-Token") token : String
     ) : Call<BasicResponse>
 
 

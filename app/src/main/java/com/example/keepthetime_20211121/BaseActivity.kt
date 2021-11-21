@@ -25,7 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //      서버 통신 관련 세팅
 
 
-        retrofit = ServerAPI.getRetrofit()
+        retrofit = ServerAPI.getRetrofit(mContext)
 
 //        기능 목록 결합
 
