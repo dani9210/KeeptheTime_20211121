@@ -16,7 +16,7 @@ import retrofit2.Response
 class MainActivity : BaseActivity() {
 
     lateinit var binding : ActivityMainBinding
-    lateinit var mvpa =
+    lateinit var mvpa  : MainViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +33,8 @@ class MainActivity : BaseActivity() {
     override fun setValues() {
 
         mvpa =  MainViewPagerAdapter(supportFragmentManager)
-        binding.mainViewPager.adapter = mvpa
-        binding.mainTabLayout.setupWithViewPager(binding.mainViewPager)
+        binding.mainViewpager.adapter = mvpa
+        binding.mainTabLayout.setupWithViewPager(binding.mainViewpager)
 
         getMyInfoFromServer()
 
