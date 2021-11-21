@@ -77,7 +77,7 @@ class LoginActivity : BaseActivity() {
 
             })
 
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile)"))
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"))
 
         }
 
