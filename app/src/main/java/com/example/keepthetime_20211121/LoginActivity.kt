@@ -1,21 +1,29 @@
 package com.example.keepthetime_20211121
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_20211121.databinding.ActivityLoginBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.utils.ContextUtil
+import com.facebook.CallbackManager
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.MessageDigest
 
 class LoginActivity : BaseActivity() {
 
     lateinit var binding : ActivityLoginBinding
+
+//    페북 로그인에 다녀오면 할일을 관리해주는 변수.
+
+    lateinit var callbackManager : CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +34,13 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        binding.btnSignUp.setOnClickListener {
+        binding.btnFacebookLogin.setOnClickListener {
+
+//          소셜 로그인 로직 활용 체험험
+
+        }
+
+       binding.btnSignUp.setOnClickListener {
             val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
         }
@@ -101,6 +115,34 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        getKeyHash()
+
+//        페북 로그인 - 콜백 관리 기능 생성
+        callbackManager = CallbackManager.Factory.create()
+
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode,resultCode,data)
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
+    fun getKeyHash() {
+
+        val info = packageManager.getPackageInfo(
+            "com.example.keepthetime_20211121",
+            PackageManager.GET_SIGNATURES
+        )
+        for (signature in info.signatures) {
+            val md: MessageDigest = MessageDigest.getInstance("SHA")
+            md.update(signature.toByteArray())
+            Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+        }
+
 
     }
 }
