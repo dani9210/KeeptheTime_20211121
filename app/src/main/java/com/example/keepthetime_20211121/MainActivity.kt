@@ -12,6 +12,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        setupEvents()
+        setValues()
     }
 
     override fun setupEvents() {
