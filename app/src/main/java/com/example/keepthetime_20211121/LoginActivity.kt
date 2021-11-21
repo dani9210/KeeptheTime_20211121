@@ -11,11 +11,13 @@ import com.example.keepthetime_20211121.databinding.ActivityLoginBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.utils.ContextUtil
 import com.facebook.CallbackManager
+import com.facebook.login.LoginManager
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.security.MessageDigest
+import java.util.*
 
 class LoginActivity : BaseActivity() {
 
@@ -36,7 +38,11 @@ class LoginActivity : BaseActivity() {
 
         binding.btnFacebookLogin.setOnClickListener {
 
-//          소셜 로그인 로직 활용 체험험
+//          소셜 로그인 로직 활용 체험
+
+//            페북 로그인에 성공하게 되면 할일도 미리 설정.
+
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile)"))
 
         }
 
