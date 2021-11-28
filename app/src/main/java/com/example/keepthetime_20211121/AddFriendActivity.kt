@@ -1,8 +1,6 @@
 package com.example.keepthetime_20211121
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +16,7 @@ class AddFriendActivity : BaseActivity() {
 
     lateinit var binding : ActivityAddFriendBinding
 
-    val mSearchedList = ArrayList<UserData>()
+    val mSearchedUserList = ArrayList<UserData>()
     lateinit var mAdapter: SearchedRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +52,13 @@ class AddFriendActivity : BaseActivity() {
 
                         val br = response.body()!!
 
+//                        기존 검색 목록은 전부 삭제
+
+                        mSearchedUserList.clear()
+
 //                        검색된 사용자 목록을 -> 멤버변수 ArrayList에 추가
 
-                        mSearchedList.addAll(br.data.users)
+                        mSearchedUserList.addAll(br.data.users)
                         mAdapter.notifyDataSetChanged()
 
                     }
@@ -76,7 +78,7 @@ class AddFriendActivity : BaseActivity() {
 
     override fun setValues() {
 
-        mAdapter = SearchedRecyclerAdapter(mContext,mSearchedList)
+        mAdapter = SearchedRecyclerAdapter(mContext,mSearchedUserList)
         binding.serchFriendRecyclerView.adapter = mAdapter
         binding.serchFriendRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
