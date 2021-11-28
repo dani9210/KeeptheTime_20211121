@@ -38,7 +38,8 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayL
 
                 (mContext as ViewFriendListActivity)
                     .apiService
-                    .putRequestAccptOrDenyFriendReques(data.id,tag).enqueue(object :Callback<BasicResponse>{
+                    .putRequestAccptOrDenyFriendReques(data.id,tag)
+                    .enqueue(object :Callback<BasicResponse>{
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
