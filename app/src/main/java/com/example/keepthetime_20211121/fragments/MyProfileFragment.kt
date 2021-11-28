@@ -14,6 +14,7 @@ import com.example.keepthetime_20211121.ViewFriendListActivity
 import com.example.keepthetime_20211121.databinding.FragmentMyProfileBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.utils.ContextUtil
+import com.example.keepthetime_20211121.utils.GlobalData
 import retrofit2.Call
 
 import retrofit2.Callback
@@ -61,11 +62,14 @@ class MyProfileFragment : BaseFragment() {
     override fun setValues() {
         //        내 정보를 서버에서 받아오자. -> 이미지 반영 / 닉네임 반영
 
+        binding.txtNickname.text = GlobalData.loginUser!!.nickname
+        Glide.with(mContext).load(GlobalData.loginUser!!.profileImageURL).into(binding.imgProfile)
+
 //         1. 프랙드먼트에서 retrofit 어떻게 활용?
 
 //         2.dataBinding -> 프래그먼트에서는 어떻게 데이터바인딩?
 
-        getMyInfoFromServer()
+//        getMyInfoFromServer()
 
     }
 
