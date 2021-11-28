@@ -2,6 +2,7 @@ package com.example.keepthetime_20211121
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_20211121.databinding.ActivityViewFriendListBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
@@ -42,6 +43,8 @@ class ViewFriendListActivity : BaseActivity() {
                 if ( response.isSuccessful){
 
                     val br = response.body()!!
+
+                   mMyFriendList.addAll(br.data.friends)
 
 
 
