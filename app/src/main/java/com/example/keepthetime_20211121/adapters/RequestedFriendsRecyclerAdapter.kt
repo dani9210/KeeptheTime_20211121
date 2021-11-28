@@ -1,6 +1,7 @@
 package com.example.keepthetime_20211121.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +19,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayList<UserData>) : RecyclerView.Adapter<RequestedFriendsRecyclerAdapter.RequestedFriendViewHolder>() {
+class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : List<UserData>) : RecyclerView.Adapter<RequestedFriendsRecyclerAdapter.RequestedFriendViewHolder>() {
 
     inner class RequestedFriendViewHolder(row : View) : RecyclerView.ViewHolder(row){
 
         val imgProfile = row.findViewById<ImageView>(R.id.imgProfile)
         val txtNickname = row.findViewById<TextView>(R.id.txtNickname)
-        val btnDenyFriend = row.findViewById<Button>(R.id.btnDenyFriend)
         val btnAcceptFriend = row.findViewById<Button>(R.id.btnAcceptFriend)
+        val btnDenyFriend = row.findViewById<Button>(R.id.btnDenyFriend)
 
         fun bind(data : UserData){
 
@@ -38,14 +39,14 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayL
 
                 (mContext as ViewFriendListActivity)
                     .apiService
-                    .putRequestAccptOrDenyFriendReques(data.id,tag)
+                    .putRequestAcceptOrDenyFriendRequest(data.id,tag)
                     .enqueue(object :Callback<BasicResponse>{
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
                         
-                        if (response.isSuccessful){
+                        if (response.isSuccessful) {
 
                             Toast.makeText(mContext, "친구요청에 응답했습니다", Toast.LENGTH_SHORT).show()
                         }
@@ -61,8 +62,8 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayL
 
             }
 
-            btnAcceptFriend.setOnClickListener(ocl)
-            btnDenyFriend.setOnClickListener(ocl)
+            btnAcceptFriend.setOnClickListener( ocl )
+            btnDenyFriend.setOnClickListener( ocl )
 
         }
 

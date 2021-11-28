@@ -17,7 +17,6 @@ class MyFriendsAdapter(
     val mList : ArrayList<UserData>
 ) : ArrayAdapter<UserData>(mContext,resId,mList) {
 
-
     val mInflater = LayoutInflater.from(mContext)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -27,8 +26,6 @@ class MyFriendsAdapter(
         if (tempRow ==null)  {
 
             tempRow = mInflater.inflate(R.layout.my_friend_list_item,null)
-
-
         }
 
         val row = tempRow!!

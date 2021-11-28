@@ -39,7 +39,7 @@ class SearchedRecyclerAdapter(val mContext : Context,val mList : List<UserData>)
 
 //                화면 : mContext (Context) => 실제 담긴것 : AddFriendActivity
 
-                (mContext as AddFriendActivity).apiService.PostRequestAddFriedng(data.id).enqueue(object : Callback<BasicResponse>{
+                (mContext as AddFriendActivity).apiService.postRequestAddFriend(data.id).enqueue(object : Callback<BasicResponse>{
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>

@@ -32,7 +32,6 @@ class EditAppointmentActivity : BaseActivity() {
             val inputLat = binding.edtLatitude.text.toString().toDouble()
             val inputLng = binding.edtLongitude.text.toString().toDouble()
 
-            Log.d("눌렸다",inputTitle)
 
             apiService.postRequestAppointment(inputTitle,inputDataTime,inputPlace,inputLat,inputLng).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(

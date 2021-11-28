@@ -59,13 +59,13 @@ interface ServerAPIService {
 
     @FormUrlEncoded
     @POST("/user/friend")
-    fun  PostRequestAddFriedng(
+    fun  postRequestAddFriend(
         @Field("user_id")  id: Int
     ) : Call<BasicResponse>
 
     @FormUrlEncoded
-    @PUT("use/friend")
-    fun putRequestAccptOrDenyFriendReques(
+    @PUT("/user/friend")
+    fun putRequestAcceptOrDenyFriendRequest(
         @Field("user_id")  id :Int,
         @Field("type")  type: String
     ) :Call<BasicResponse>
