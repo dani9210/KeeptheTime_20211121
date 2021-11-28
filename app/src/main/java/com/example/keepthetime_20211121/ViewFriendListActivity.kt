@@ -1,5 +1,6 @@
 package com.example.keepthetime_20211121
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,16 @@ class ViewFriendListActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.btnAddFriend.setOnClickListener {
+
+//            친구 추가 화면으로 이동
+
+            val myIntent = Intent(mContext,AddFriendActivity::class.java)
+            startActivity(myIntent)
+
+
+        }
 
     }
 
