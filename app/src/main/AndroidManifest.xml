@@ -10,7 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".GlobalApplication"
         android:theme="@style/Theme.KeeptheTime_20211121">
+
+
         <activity
             android:name=".ViewFriendListActivity"
             android:exported="false" />
