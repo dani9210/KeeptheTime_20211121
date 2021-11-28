@@ -16,6 +16,7 @@ class ViewFriendListActivity : BaseActivity() {
 
     lateinit var binding : ActivityViewFriendListBinding
 
+    val mMyFriendslist = ArrayList<UserData>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,33 @@ class ViewFriendListActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        getMyFriendsFromServer()
 
+
+    }
+
+    fun getMyFriendsFromServer(){
+
+        apiService.getRequestMyFriends("my").enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if(response.isSuccessful){
+
+                    val br = response.body()!!
+
+                    mMyFriendslist.addAll(br.data.friends)
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+
+
+        })
 
     }
 

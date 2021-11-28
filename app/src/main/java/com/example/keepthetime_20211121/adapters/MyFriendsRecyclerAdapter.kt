@@ -19,7 +19,6 @@ class MyFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayList<Use
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyFriendViewHolder {
 
         val row = LayoutInflater.from(mContext).inflate(R.layout.my_friend_list_item,parent,false)
-
         return MyFriendViewHolder(row)
 
     }
