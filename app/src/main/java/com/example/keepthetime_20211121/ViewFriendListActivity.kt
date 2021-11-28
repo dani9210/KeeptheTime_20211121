@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import com.example.keepthetime_20211121.adapters.MyFriendsAdapter
 import com.example.keepthetime_20211121.databinding.ActivityViewFriendListBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.datas.UserData
@@ -16,6 +17,8 @@ class ViewFriendListActivity : BaseActivity() {
     lateinit var binding : ActivityViewFriendListBinding
 
     val mMyFriendList = ArrayList<UserData>()
+
+    lateinit var  mFriendAdapter : MyFriendsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,10 @@ class ViewFriendListActivity : BaseActivity() {
     override fun setValues() {
         getMyFriendServer()
 
+        mFriendAdapter = MyFriendsAdapter(mContext,R.layout.my_friend_list_item,mMyFriendList)
+
+        binding.myFriendListView.adapter = mFriendAdapter
+
     }
 
 
@@ -45,6 +52,8 @@ class ViewFriendListActivity : BaseActivity() {
                     val br = response.body()!!
 
                    mMyFriendList.addAll(br.data.friends)
+
+                    mFriendAdapter.notifyDataSetChanged()
 
 
 
