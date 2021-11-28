@@ -1,17 +1,22 @@
 package com.example.keepthetime_20211121.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.keepthetime_20211121.R
+import com.example.keepthetime_20211121.ViewFriendListActivity
+import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.datas.UserData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayList<UserData>) : RecyclerView.Adapter<RequestedFriendsRecyclerAdapter.RequestedFriendViewHolder>() {
 
@@ -29,8 +34,29 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayL
 
             val ocl = View.OnClickListener {
 
-                Log.d("친구요청목록","버튼 눌림!")
-                Log.d("친구요청목록",it.tag.toString())
+                val tag = it.tag.toString()
+
+                (mContext as ViewFriendListActivity)
+                    .apiService
+                    .putRequestAccptOrDenyFriendReques(data.id,tag).enqueue(object :Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        
+                        if (response.isSuccessful){
+
+                            Toast.makeText(mContext, "친구요청에 응답했습니다", Toast.LENGTH_SHORT).show()
+                        }
+                        
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        
+                    }
+
+
+                })
 
             }
 
