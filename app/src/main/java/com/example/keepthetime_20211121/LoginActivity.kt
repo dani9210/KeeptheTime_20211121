@@ -87,7 +87,7 @@ class LoginActivity : BaseActivity() {
 
 //            카톡 앱이 깔려 있는지?
 
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable( mContext)){
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(mContext)) {
 
 //                카톡 앱 설치됨 . = >카카오 로그인
 
@@ -95,33 +95,39 @@ class LoginActivity : BaseActivity() {
 
 //                    token : 로그인한 사용자의 고유 카톡 토큰값. => 본인 정보 요청
 
-                    if ( error != null)
+                    if (error != null) {
 
-                    Toast.makeText(mContext, "카톡 로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
-                    return@loginWithKakaoTalk
+                        Toast.makeText(mContext, "카톡 로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
+                        return@loginWithKakaoTalk
+
+                    }
+
                     getKakaoUserInfo(token!!)
 
                 }
 
-            }
+            } else {
 
-            else{
+
 
 //                카톡 앱 미설치. => 카카오계정으로 로그인
 
-                UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
+            UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
 
-                    if ( error != null)
+                if (error != null) {
 
-                        Toast.makeText(mContext, "카톡 로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(mContext, "카톡 로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
                     return@loginWithKakaoAccount
-                    getKakaoUserInfo(token!!)
 
                 }
-
-
+                getKakaoUserInfo(token!!)
 
             }
+
+
+        }
+
 
         }
 
@@ -140,17 +146,39 @@ class LoginActivity : BaseActivity() {
 
 //                    이 토큰을 이용해서 -> 페북에서 사용자 정보도 받아오자. => 페북 클래스 : GraphRequest
 
-                    GraphRequest.newMeRequest(result?.accessToken,object : GraphRequest.GraphJSONObjectCallback{
+                  val graphRequest =  GraphRequest.newMeRequest(result?.accessToken,object : GraphRequest.GraphJSONObjectCallback{
 
                         override fun onCompleted(`jsonObj`: JSONObject?, response: GraphResponse?) {
 
                             Log.d("내정보",jsonObj.toString())
-                            Log.d("내정보응답",response.toString())
+
+                            val uid = jsonObj!!.getString("id")
+                            val name = jsonObj!!.getString("name")
+
+//                            페북 로그인에서 받은 내 정보 -> 앱 서버 소셜로그인 기능 호출
+
+                            apiService.postRequestSocialLogin("facebook",uid,name).enqueue(object : Callback<BasicResponse>{
+                                override fun onResponse(
+                                    call: Call<BasicResponse>,
+                                    response: Response<BasicResponse>
+                                ) {
+
+                                }
+
+                                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                                }
+
+
+                            })
 
                         }
 
 
                     })
+
+//                    내 정보 받아오기 실행
+                    graphRequest.executeAsync()
 
                 }
 
