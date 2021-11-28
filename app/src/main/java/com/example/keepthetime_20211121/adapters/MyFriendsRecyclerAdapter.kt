@@ -29,4 +29,3 @@ class MyFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayList<Use
 
     override fun getItemCount() = mList.size
     }
-}
