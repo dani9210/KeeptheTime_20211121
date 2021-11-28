@@ -5,6 +5,7 @@ class DataResponse(
     var token : String,
 
 //    친구 목록 API의 파싱에만 사용
-    var friends : List<UserData>
+    var friends : List<UserData>,
+    var users : List<UserData>
 ) {
 }
