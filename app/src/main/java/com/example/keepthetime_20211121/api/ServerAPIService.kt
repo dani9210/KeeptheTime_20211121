@@ -78,9 +78,10 @@ interface ServerAPIService {
         @Field("place")  place: String,
         @Field("latitude")  lat : Double,
         @Field("longitude")  lng : Double
-
         ) : Call<BasicResponse>
 
+    @GET("/appointment")
+    fun getRequestAppointment: Call<BasicResponse>
 
 
 //    연습 - 내 정보 가져오기 API
