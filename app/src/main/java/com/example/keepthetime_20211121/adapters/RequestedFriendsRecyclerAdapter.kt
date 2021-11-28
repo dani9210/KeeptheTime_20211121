@@ -1,9 +1,11 @@
 package com.example.keepthetime_20211121.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +19,23 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : ArrayL
 
         val imgProfile = row.findViewById<ImageView>(R.id.imgProfile)
         val txtNickname = row.findViewById<TextView>(R.id.txtNickname)
+        val btnDenyFriend = row.findViewById<Button>(R.id.btnDenyFriend)
+        val btnAcceptFriend = row.findViewById<Button>(R.id.btnAcceptFriend)
 
         fun bind(data : UserData){
 
             txtNickname.text = data.nickname
             Glide.with(mContext).load(data.profileImageURL).into(imgProfile)
+
+            val ocl = View.OnClickListener {
+
+                Log.d("친구요청목록","버튼 눌림!")
+                Log.d("친구요청목록",it.tag.toString())
+
+            }
+
+            btnAcceptFriend.setOnClickListener(ocl)
+            btnDenyFriend.setOnClickListener(ocl)
 
         }
 

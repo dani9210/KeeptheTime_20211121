@@ -31,12 +31,14 @@
         android:id="@+id/btnAcceptFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:tag="수락"
         android:text="요청 수락"/>
     <Button
         android:id="@+id/btnDenyFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:tag="거절"
         android:text="요청 거절"/>
 
 </LinearLayout>
