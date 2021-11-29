@@ -1,17 +1,18 @@
 package com.example.keepthetime_20211121.fragments
 
+
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.keepthetime_20211121.MyFriendListActivity
+import com.example.keepthetime_20211121.*
 
-import com.example.keepthetime_20211121.R
-import com.example.keepthetime_20211121.ViewFriendListActivity
 import com.example.keepthetime_20211121.databinding.FragmentMyProfileBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.utils.ContextUtil
@@ -45,6 +46,29 @@ class MyProfileFragment : BaseFragment() {
 
 
     override fun setEvents() {
+
+        binding.btnLogout.setOnClickListener {
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("로그아웃")
+            alert.setMessage("정말 로그아웃 하시겠습니까?")
+            alert.setPositiveButton("확인",DialogInterface.OnClickListener { dialog, which ->
+
+
+                ContextUtil.setToken(mContext,"")
+
+                val myIntent = Intent(mContext,SplashActivity::class.java)
+                startActivity(myIntent)
+
+            })
+
+            alert.setNegativeButton("취소",null)
+            alert.show()
+
+
+
+
+        }
 
         binding.btnFriendList.setOnClickListener {
 
