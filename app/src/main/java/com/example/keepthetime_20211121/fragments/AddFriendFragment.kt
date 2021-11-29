@@ -1,76 +1,84 @@
-package com.example.keepthetime_20211121
+package com.example.keepthetime_20211121.fragments
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.keepthetime_20211121.R
 import com.example.keepthetime_20211121.adapters.MyFriendsRecyclerAdapter
 import com.example.keepthetime_20211121.adapters.RequestedFriendsRecyclerAdapter
-import com.example.keepthetime_20211121.databinding.ActivityViewFriendListBinding
+import com.example.keepthetime_20211121.databinding.FragmentAddFriendBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.datas.UserData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ViewFriendListActivity : BaseActivity() {
 
-    lateinit var binding : ActivityViewFriendListBinding
+class AddFriendFragment : BaseFragment() {
+
+    lateinit var binding : FragmentAddFriendBinding
 
     val mMyFriendsList = ArrayList<UserData>()
-
 
     lateinit var mRequestedFriendsRecyclerAdapter: RequestedFriendsRecyclerAdapter
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_view_friend_list)
 
-        setupEvents()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_add_friend, container, false)
+        return binding.root
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        setEvents()
         setValues()
     }
 
-    override fun setupEvents() {
 
-        binding.btnAddFriend.setOnClickListener {
-
-//            친구 추가 화면으로 이동
-
-            val myIntent = Intent(mContext,AddFriendActivity::class.java)
-            startActivity(myIntent)
-
-
-        }
+    override fun setEvents() {
 
     }
 
     override fun setValues() {
-        getMyFriendsFromServer()
-//        mMyFriendsAdapter = MyFriendsRecyclerAdapter(mContext,mMyFriendsList)
 
         mRequestedFriendsRecyclerAdapter = RequestedFriendsRecyclerAdapter(mContext,mMyFriendsList)
         binding.myFriendsRecyclerView.adapter = mRequestedFriendsRecyclerAdapter
-//        여러 형태로 목록 배치 가능. -> 어떤 형태로 보여줄건지? 리싸이클러뷰에 세팅.
         binding.myFriendsRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+
+        getMyFriendsFromServer()
+
+
 
 
     }
 
     fun getMyFriendsFromServer(){
 
-        apiService.getRequestMyFriends("requested").enqueue(object : Callback<BasicResponse>{
+        apiService.getRequestMyFriends("requested").enqueue(object :Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
                 if(response.isSuccessful){
 
                     val br = response.body()!!
-
                     mMyFriendsList.addAll(br.data.friends)
                     mRequestedFriendsRecyclerAdapter.notifyDataSetChanged()
 
-
                 }
+
+
+
 
             }
 
@@ -80,6 +88,7 @@ class ViewFriendListActivity : BaseActivity() {
 
 
         })
+
 
     }
 

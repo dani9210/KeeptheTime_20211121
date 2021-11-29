@@ -3,6 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_add_friend.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_edit_appointment.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_login.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_main.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_my_friend_list.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_my_friend_list_main.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_sign_up.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_spalysh.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/activity_view_friend_list.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/appointment_list_item.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/fragment_add_friend.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/fragment_my_friend_list.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/fragment_my_profile.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/fragment_schedule_list.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/frgment_my_friend_list.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/my_friend_list_item.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/requested_friend_list_item.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/hogam/StudioProjects/KeeptheTime_20211121_1/app/src/main/res/layout/searched_friend_list_item.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/KeeptheTime_20211121/app/src/main/res/layout/activity_add_friend.xml" value="0.33" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/KeeptheTime_20211121/app/src/main/res/layout/activity_edit_appointment.xml" value="0.5359375" />
         <entry key="..\:/Users/pc/AndroidStudioProjects/KeeptheTime_20211121/app/src/main/res/layout/activity_login.xml" value="0.5395833333333333" />

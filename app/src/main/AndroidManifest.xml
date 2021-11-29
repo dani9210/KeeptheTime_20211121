@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KeeptheTime_20211121">
         <activity
+            android:name=".MyFriendListActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditAppointmentActivity"
             android:exported="false" />
         <activity

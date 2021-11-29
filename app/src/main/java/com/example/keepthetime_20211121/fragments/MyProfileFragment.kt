@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.example.keepthetime_20211121.MyFriendListActivity
 
 import com.example.keepthetime_20211121.R
 import com.example.keepthetime_20211121.ViewFriendListActivity
@@ -25,10 +26,7 @@ class MyProfileFragment : BaseFragment() {
     lateinit var binding : FragmentMyProfileBinding
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_profile,container,false)
         return binding.root
@@ -50,7 +48,7 @@ class MyProfileFragment : BaseFragment() {
 
         binding.btnFriendList.setOnClickListener {
 
-            val myIntent = Intent(mContext,ViewFriendListActivity::class.java)
+            val myIntent = Intent(mContext,MyFriendListActivity::class.java)
             startActivity(myIntent)
 
 
