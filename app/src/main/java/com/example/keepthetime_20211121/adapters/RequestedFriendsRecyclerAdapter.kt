@@ -15,6 +15,7 @@ import com.example.keepthetime_20211121.R
 import com.example.keepthetime_20211121.ViewFriendListActivity
 import com.example.keepthetime_20211121.datas.BasicResponse
 import com.example.keepthetime_20211121.datas.UserData
+import com.example.keepthetime_20211121.fragments.AddFriendFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +38,7 @@ class RequestedFriendsRecyclerAdapter(val mContext : Context, val mList : List<U
 
                 val tag = it.tag.toString()
 
-                (mContext as ViewFriendListActivity)
+                (mContext as AddFriendFragment)
                     .apiService
                     .putRequestAcceptOrDenyFriendRequest(data.id,tag)
                     .enqueue(object :Callback<BasicResponse>{

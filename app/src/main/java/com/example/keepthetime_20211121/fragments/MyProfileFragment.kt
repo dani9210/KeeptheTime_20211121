@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.keepthetime_20211121.*
@@ -52,13 +53,18 @@ class MyProfileFragment : BaseFragment() {
             val alert = AlertDialog.Builder(mContext)
             alert.setTitle("로그아웃")
             alert.setMessage("정말 로그아웃 하시겠습니까?")
-            alert.setPositiveButton("확인",DialogInterface.OnClickListener { dialog, which ->
+            alert.setPositiveButton("확인",DialogInterface.OnClickListener { dialog, i ->
 
 
                 ContextUtil.setToken(mContext,"")
 
                 val myIntent = Intent(mContext,SplashActivity::class.java)
+               myIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(myIntent)
+
+
+
+
 
             })
 

@@ -47,6 +47,8 @@ class AddFriendFragment : BaseFragment() {
 
 
     override fun setEvents() {
+        
+
 
     }
 
