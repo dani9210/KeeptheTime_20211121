@@ -55,17 +55,17 @@ class EditAppointmentActivity : BaseActivity() {
 
                     mSelectedDateTime.set(year,month,dayOfMonth)
 
-//                    txtDate 의 문구를 - > 2021-08-05  와 같은 양식으로 가공해서 텍스트 세팅.
+//                    txtDate 의 문구를 - > 21년  8월 5일 와 같은 양식으로 가공해서 텍스트 세팅.
 
 //                    Calendar를 다룰 양식만 미리 지정.
 
-                    val dateFormat = SimpleDateFormat( "yyyy-MM-dd" )
 
-//                    Calendar => String 변환.
+                    val dateFormat = SimpleDateFormat("yy년 M월 d일")
 
-                    val dateStr = dateFormat.format( mSelectedDateTime.time )
+                    val dateStr = dateFormat.format(mSelectedDateTime.time)
 
                     binding.txtDate.text = dateStr
+
 
                 }
 
