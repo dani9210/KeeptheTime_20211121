@@ -8,12 +8,12 @@ class ScheduleData(
 
     var id : Int,
     var title : String,
-    var dateTime : Date,
+    var datetime : Date,
     var place : String,
     var latitude : Double,
     var longitude : Double,
     @SerializedName("created_at")
-    var createdAt : String
+    var createdAt : Date
 ) {
 
 
@@ -26,8 +26,7 @@ class ScheduleData(
 //    기능 추가 -> Data = > 가공된 String으로 내보내주는 함수.
 
         val twoLineFormat = SimpleDateFormat( "M월 d일\na h:mm" )
-
-        return twoLineFormat.format(this.dateTime)
+        return twoLineFormat.format(this.datetime)
 
 
     }
