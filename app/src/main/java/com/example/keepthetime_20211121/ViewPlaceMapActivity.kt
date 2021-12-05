@@ -33,14 +33,16 @@ class ViewPlaceMapActivity : BaseActivity() {
 
         binding.naverMapView.getMapAsync {
 
-            val lat = intent.getBooleanExtra("lat")
+
+//        3. 카메라 이동 / 마커 추가   (받아온 스케쥴의 위도,경도 이용)
+
+            val lat = intent.getBooleanExtra()
 
             val naverMap = it
             val cameraUpdate = CameraUpdate.scrollTo()
 
         }
 
-//        3. 카메라 이동 / 마커 추가   (받아온 스케쥴의 위도,경도 이용)
 
 
 
