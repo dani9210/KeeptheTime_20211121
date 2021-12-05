@@ -7,6 +7,7 @@ import com.example.keepthetime_20211121.databinding.ActivityViewPalceMapBinding
 import com.example.keepthetime_20211121.datas.ScheduleData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 
 class ViewPlaceMapActivity : BaseActivity() {
@@ -54,6 +55,19 @@ class ViewPlaceMapActivity : BaseActivity() {
             val marker = Marker()
             marker.position = coord
             marker.map = naverMap
+
+//            추가 기능 체험 - 정보창( 말풍선) => 마커에 반영
+
+            val infoWindow = InfoWindow()
+            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext){
+                override fun getText(p0: InfoWindow): CharSequence {
+                    return "약속 장소"
+                }
+
+
+            }
+
+            infoWindow.open(marker)
 
         }
 
