@@ -11,6 +11,10 @@ import com.naver.maps.map.CameraUpdate
 class ViewPlaceMapActivity : BaseActivity() {
 
     lateinit var binding : ActivityViewPalceMapBinding
+
+    lateinit var mScheduleData: ScheduleData
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_view_palce_map)
@@ -25,6 +29,8 @@ class ViewPlaceMapActivity : BaseActivity() {
 
     override fun setValues() {
 
+        mScheduleData = intent.getSerializableExtra("schedule") as ScheduleData
+
 //        0. 프로젝트에 네이버 지도 설치 (완료)
 
 //        1. 화면 (xml 에 네이버 맵 띄워주기
@@ -36,10 +42,10 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //        3. 카메라 이동 / 마커 추가   (받아온 스케쥴의 위도,경도 이용)
 
-            val lat = intent.getBooleanExtra()
+
 
             val naverMap = it
-            val cameraUpdate = CameraUpdate.scrollTo()
+//            val cameraUpdate = CameraUpdate.scrollTo()
 
         }
 
