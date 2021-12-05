@@ -61,13 +61,41 @@ class ViewPlaceMapActivity : BaseActivity() {
             val infoWindow = InfoWindow()
             infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext){
                 override fun getText(p0: InfoWindow): CharSequence {
-                    return "약속 장소"
+                    return mScheduleData.place
                 }
 
 
             }
 
             infoWindow.open(marker)
+
+            naverMap.setOnMapClickListener { pointF, latLng ->
+
+//                지도 아무데나 클릭하면, 정보창 닫기
+
+                infoWindow.close()
+
+
+            }
+
+
+            marker.setOnClickListener {
+
+                if (marker.infoWindow ==null){
+
+//                    정보창이 안열려있다
+
+                    infoWindow.open(marker)
+
+                }
+
+                else{
+
+                    infoWindow.close()
+                }
+
+                return@setOnClickListener true
+            }
 
         }
 
