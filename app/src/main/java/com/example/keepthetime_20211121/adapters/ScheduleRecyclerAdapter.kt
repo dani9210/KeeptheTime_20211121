@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.keepthetime_20211121.R
 
-class ScheduleRecyclerAdapter(val mContext : Context, val mList : List<SchduleData>) : RecyclerView.Adapter<ScheduleViewHolder>() {
+class ScheduleRecyclerAdapter(val mContext : Context, val mList : List<SchduleData>) : RecyclerView.Adapter<ScheduleRecyclerAdapter>() {
 
     inner class ScheduleViewHolder(row : View) : RecyclerView.ViewHolder(row){
 
