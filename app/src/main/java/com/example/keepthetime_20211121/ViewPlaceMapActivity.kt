@@ -7,6 +7,7 @@ import com.example.keepthetime_20211121.databinding.ActivityViewPalceMapBinding
 import com.example.keepthetime_20211121.datas.ScheduleData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.overlay.Marker
 
 class ViewPlaceMapActivity : BaseActivity() {
 
@@ -40,12 +41,19 @@ class ViewPlaceMapActivity : BaseActivity() {
         binding.naverMapView.getMapAsync {
 
 
+            val naverMap = it
 //        3. 카메라 이동 / 마커 추가   (받아온 스케쥴의 위도,경도 이용)
 
+//            위치 (좌표)  데이터 객체
 
+            val coord = LatLng( mScheduleData.latitude,mScheduleData.longitude )
 
-            val naverMap = it
-//            val cameraUpdate = CameraUpdate.scrollTo()
+          val cameraUpdate = CameraUpdate.scrollTo(coord)
+            naverMap.moveCamera(cameraUpdate)
+
+            val marker = Marker()
+            marker.position = coord
+            marker.map = naverMap
 
         }
 
