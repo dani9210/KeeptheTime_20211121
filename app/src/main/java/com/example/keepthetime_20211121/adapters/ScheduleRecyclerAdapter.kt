@@ -30,6 +30,12 @@ class ScheduleRecyclerAdapter(val mContext : Context, val mList : List<ScheduleD
             imgMap.setOnClickListener {
 
                 val myIntent = Intent(mContext,ViewPlaceMapActivity::class.java)
+
+//                어떤 약속을 보러가는지 데이터 첨부
+
+                myIntent.putExtra("lat",data.latitude)
+                myIntent.putExtra("lng",data.longitude)
+
                 mContext.startActivity(myIntent)
             }
 
