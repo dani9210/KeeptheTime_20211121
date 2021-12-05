@@ -8,7 +8,7 @@ class ScheduleData(
     var place : String,
     var latitude : Double,
     var longitude : Double,
-    @Serializedname("created_at")
+    @SerializedName("created_at")
     var createdAt : String
 ) {
 }
