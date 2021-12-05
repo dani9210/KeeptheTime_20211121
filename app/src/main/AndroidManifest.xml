@@ -76,6 +76,12 @@
                     android:scheme="kakao6d5ebbe9f122c9e3d680e309479cc3b6" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="txly2w5srs" />
+
+
     </application>
 
 </manifest>
