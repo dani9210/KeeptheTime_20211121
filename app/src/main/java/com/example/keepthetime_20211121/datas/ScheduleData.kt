@@ -1,5 +1,7 @@
 package com.example.keepthetime_20211121.datas
 
+import com.google.gson.annotations.SerializedName
+
 class ScheduleData(
 
     var id : Int,
