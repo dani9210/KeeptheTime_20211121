@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_20211121.databinding.ActivityEditAppointmentBinding
 import com.example.keepthetime_20211121.datas.BasicResponse
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -222,6 +224,14 @@ class EditAppointmentActivity : BaseActivity() {
 //            로딩이 끝난 네이버맵 객체 (인스턴스가) => it 변수에 담겨있다.
 
             val naverMap = it
+
+//            예시 . 카메라를 본인 집근처로 이동
+
+
+//            위 경도 정보 => 카메라 이동명령을 변수에 저장만.
+            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.79300809693715, 127.07428264091268))
+
+            naverMap.moveCamera(cameraUpdate)
 
 
         }
