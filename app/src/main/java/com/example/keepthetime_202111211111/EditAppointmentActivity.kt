@@ -4,9 +4,11 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_202111211111.databinding.ActivityEditAppointmentBinding
 import com.example.keepthetime_202111211111.datas.BasicResponse
@@ -129,6 +131,24 @@ class EditAppointmentActivity : BaseActivity() {
                     }
 
 //                    검색 결과로 찾아낸 장소 목록이 전부 추가됨.  => UI에서 활용?
+
+                    runOnUiThread {
+
+//                        임시 - 첫 장소의 이름을 토스트
+//                        Toast.makeText(mContext, placeList[0].placeName, Toast.LENGTH_SHORT).show()
+
+//                        AlertDialog 를 띄우자. => 커스텀 뷰를 가진 AlertDialog.
+//                        커스텀뷰의 내용 : RecyclerView 를 내용물로 . =>  장소 목록 띄우기.
+
+                        val alert = AlertDialog.Builder(mContext)
+
+                        val customView = LayoutInflater.from(mContext).inflate(R.layout.my_custom_alert_select_place,null)
+
+                        alert.setTitle("약속 장소 선택")
+//                        alert.setMessage("정말~~?")
+                        alert.show()
+
+                    }
 
                 }
 
