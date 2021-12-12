@@ -125,6 +125,52 @@ class ViewPlaceMapActivity : BaseActivity() {
                 object : OnResultCallbackListener{
                     override fun onSuccess(p0: ODsayData?, p1: API?) {
 
+
+                        val jsonObj = p0!!.json
+
+
+                        val transCoords = ArrayList<LatLng>()
+
+                        transCoords.add(startingPoint)
+
+                        val resultObj = jsonObj.getJSONObject("result")
+                        val pathArr = resultObj.getJSONArray("path")
+
+//                        만약 추천경로가 안나오면 중간 좌표추가 X
+
+                        if ( pathArr.length() > 0){
+
+                            val firstRecommendPath = pathArr.getJSONObject(0)
+
+                            val subPathArr = firstRecommendPath.getJSONArray("subPath")
+
+//                            세부 경로들 하나씩 꺼내보자 -> 정거장 목록이 있는가 ? 추가검사
+
+                            for ( i in 0 until subPathArr.length()) {
+
+                                val subPathObj = subPathArr.getJSONObject(i)
+
+//                                정거장 목록이 null이 아닌가? =>  내려 주는가?
+
+                                if ( !subPathObj.isNull("passStopList")) {
+
+//                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
+
+
+
+                                }
+
+
+                            }
+
+
+
+                        }
+
+//                        마지막좌표 : 도착지를 등록.
+                        transCoords.add(coord)
+
+
                     }
 
                     override fun onError(p0: Int, p1: String?, p2: API?) {
