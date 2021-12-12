@@ -162,12 +162,18 @@ class ViewPlaceMapActivity : BaseActivity() {
 
                                         val stationsObj = stationsArr.getJSONObject(j)
 
+//                                        x : 경도 (lng), y : 위도 (lat)
+
                                         val lat = stationsObj.getString("y").toDouble()
                                         val lng = stationsObj.getString("x").toDouble()
 
-                                        val stationsLatLng = LatLng(lat,lng)
+//                                        네이버 지도 좌표로 가공
 
-                                        transCoords.add(stationsLatLng)
+                                        val naverLatLng = LatLng(lat,lng)
+
+//                                        교통 좌표 목록에 추가
+
+                                        transCoords.add(naverLatLng)
 
 
 
@@ -185,6 +191,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                        마지막좌표 : 도착지를 등록.
                         transCoords.add(coord)
+
 
 
 
