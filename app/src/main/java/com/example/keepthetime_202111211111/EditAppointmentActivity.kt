@@ -303,7 +303,7 @@ class EditAppointmentActivity : BaseActivity() {
                     object : OnResultCallbackListener {
                         override fun onSuccess(p0: ODsayData?, p1: API?) {
                             val jsonObj = p0!!.json
-                            Log.d("길찾기응답", jsonObj.toString())
+                            Log.d("길찾 기응답", jsonObj.toString())
 
 //                            출발지 ~ 지하철역 (or 버스정거장) 좌표들 ~ 도착지 좌표 목록으로 설정.
 

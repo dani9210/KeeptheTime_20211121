@@ -8,6 +8,10 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.odsay.odsayandroidsdk.API
+import com.odsay.odsayandroidsdk.ODsayData
+import com.odsay.odsayandroidsdk.ODsayService
+import com.odsay.odsayandroidsdk.OnResultCallbackListener
 
 class ViewPlaceMapActivity : BaseActivity() {
 
@@ -96,6 +100,96 @@ class ViewPlaceMapActivity : BaseActivity() {
 
                 return@setOnClickListener true
             }
+
+
+//            ODsay 라이브러리 재횔용 -> JSON 파싱 => 출발지 ~ 도착지 대중교통경로 지도에 표시.
+//            복잡한 모양의 JSONObject 직접 파싱 복습 => ~12:30 분
+
+
+//            출발지 정보~ 도착지 API 호출
+//            or 본인 집 좌표 직접 출발지 지정
+
+            val startingPoint = LatLng(37.79304201000072, 127.07423972566195)
+
+
+            val mODsayService = ODsayService.init(mContext,resources.getString(R.string.odsay_key))
+
+            mODsayService.requestSearchPubTransPath(
+                startingPoint.longitude.toString(),
+                startingPoint.latitude.toString(),
+                coord.longitude.toString(),
+                coord.latitude.toString(),
+                null,
+                null,
+                null,
+                object : OnResultCallbackListener{
+                    override fun onSuccess(p0: ODsayData?, p1: API?) {
+
+                        val jsonObj = p0!!.json
+
+                        val transCoords = ArrayList<LatLng>()
+
+                        transCoords.add(startingPoint)
+
+                        val resultObj = jsonObj.getJSONObject("result")
+                        val pathArr = resultObj.getJSONArray("path")
+
+                        if ( pathArr.length() > 0){
+
+                            val fristObj = pathArr.getJSONObject(0)
+
+                            val subPathArr = fristObj.getJSONArray("subpath")
+
+                            for ( i in 0 until subPathArr.length()) {
+
+                                val subPathObj = subPathArr.getJSONObject(i)
+
+                                if ( !subPathObj.isNull("passStopList")) {
+
+                                    val passStopListObj = subPathObj.getJSONObject("passStopList")
+                                    val staionsArr = passStopListObj.getJSONArray("stations")
+
+                                    for ( j in 0 until staionsArr.length()){
+
+                                        val stationsObj = staionsArr.getJSONObject(j)
+
+                                        val lat = stationsObj.getString("y").toDouble()
+                                        val lng = stationsObj.getString("x").toDouble()
+
+                                        val stationsLatLng = LatLng(lat,lng)
+
+                                        transCoords.add(stationsLatLng)
+
+
+
+
+                                    }
+
+                                }
+
+
+                            }
+
+
+
+                        }
+                        transCoords.add(coord)
+
+
+
+                    }
+
+
+                    override fun onError(p0: Int, p1: String?, p2: API?) {
+
+                    }
+
+
+                }
+            )
+
+
+
 
         }
 
