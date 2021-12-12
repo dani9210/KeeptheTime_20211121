@@ -15,6 +15,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.overlay.PathOverlay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +35,8 @@ class EditAppointmentActivity : BaseActivity() {
 
     var mSelectedLatLng : LatLng? = null
     var mSelectedMarker : Marker? = null
+
+    var mPath : PathOverlay? = null
 
     lateinit var binding : ActivityEditAppointmentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -266,6 +269,34 @@ class EditAppointmentActivity : BaseActivity() {
 
                 mSelectedMarker!!.position = latLng
                 mSelectedMarker!!.map = naverMap
+
+
+//                하나의 지점 (본인 집) 에서 -> 클릭한 지점까지 선 긋기.
+
+
+                val startingPoint = LatLng(37.79304201000072,127.07423972566195)
+
+//                선이 그어질 경로(여ㅑ러 지점의 연결로 표현)
+
+//                pateoverlay() 선긋는 객체 생성 . = > 지도에 클릭될때마다 새로 생성됨. => 선도 하나씩 새로 그어짐.
+
+//                val path = PathOverlay()
+
+
+
+//                mPath 변수가 null 상태라면?  새객체를 만들어서 채워줌
+                if(mPath == null)  {
+
+                    mPath = PathOverlay()
+
+                }
+
+                mPath!!.coords = arrayListOf(
+                    startingPoint,
+                    latLng
+
+                )
+                mPath!!.map = naverMap
 
 
             }
