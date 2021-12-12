@@ -156,6 +156,32 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
 
+                                    //                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
+
+                                    val passStopListObj = subPathObj.getJSONObject("passStopList")
+                                    val stationsArr = passStopListObj.getJSONArray("stations")
+
+                                    for ( j in 0 until stationsArr.length()){
+
+                                        val stationsObj = stationsArr.getJSONObject(j)
+
+//                                        x : 경도 (lng), y : 위도 (lat)
+
+                                        val lat = stationsObj.getString("y").toDouble()
+                                        val lng = stationsObj.getString("x").toDouble()
+
+//                                        네이버 지도 좌표로 가공
+
+                                        val naverLatLng = LatLng(lat,lng)
+
+//                                        교통 좌표 목록에 추가
+
+                                        transCoords.add(naverLatLng)
+
+
+
+
+                                    }
 
 
                                 }
