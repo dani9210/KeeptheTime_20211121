@@ -153,9 +153,21 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                        리싸이클러뷰에, placeList에 담긴 장소목록을 표시.
 
-                        val PlaceAdapter = PlaceSelectRecyclerAdapter(mContext,placeList)
-                        placeSelectRecyclerView.adapter = PlaceAdapter
+                        val placeAdapter = PlaceSelectRecyclerAdapter(mContext,placeList)
+                        placeSelectRecyclerView.adapter = placeAdapter
                         placeSelectRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+//                        만든 리싸이클러 어댑터의 변수로 들어있는 onItemClick 기능 활용.
+
+                        placeAdapter.onItemClickListener  = object  : PlaceSelectRecyclerAdapter.OnItemClickListener{
+                            override fun onItemClick(data: PlaceData) {
+
+                                Toast.makeText(mContext, data.placeName, Toast.LENGTH_SHORT).show()
+
+                            }
+
+
+                        }
 
                         alert.setTitle("약속 장소 선택")
 //                        alert.setMessage("정말~~?")
