@@ -8,6 +8,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.PathOverlay
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
@@ -191,6 +192,10 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                        마지막좌표 : 도착지를 등록.
                         transCoords.add(coord)
+
+                        val path = PathOverlay()
+                        path.coords = transCoords
+                        path.map = naverMap
 
 
 
