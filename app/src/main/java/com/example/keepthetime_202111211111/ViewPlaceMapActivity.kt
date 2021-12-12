@@ -16,15 +16,14 @@ import com.odsay.odsayandroidsdk.OnResultCallbackListener
 
 class ViewPlaceMapActivity : BaseActivity() {
 
-    lateinit var binding : ActivityViewPalceMapBinding
+    lateinit var binding: ActivityViewPalceMapBinding
 
     lateinit var mScheduleData: ScheduleData
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_view_palce_map)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_palce_map)
         binding.naverMapView.onCreate(savedInstanceState)
         setupEvents()
         setValues()
@@ -52,9 +51,9 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //            위치 (좌표)  데이터 객체
 
-            val coord = LatLng( mScheduleData.latitude,mScheduleData.longitude )
+            val coord = LatLng(mScheduleData.latitude, mScheduleData.longitude)
 
-          val cameraUpdate = CameraUpdate.scrollTo(coord)
+            val cameraUpdate = CameraUpdate.scrollTo(coord)
             naverMap.moveCamera(cameraUpdate)
 
             val marker = Marker()
@@ -64,7 +63,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 //            추가 기능 체험 - 정보창( 말풍선) => 마커에 반영
 
             val infoWindow = InfoWindow()
-            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext){
+            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
                 override fun getText(p0: InfoWindow): CharSequence {
                     return mScheduleData.place
                 }
@@ -86,15 +85,13 @@ class ViewPlaceMapActivity : BaseActivity() {
 
             marker.setOnClickListener {
 
-                if (marker.infoWindow ==null){
+                if (marker.infoWindow == null) {
 
 //                    정보창이 안열려있다
 
                     infoWindow.open(marker)
 
-                }
-
-                else{
+                } else {
 
                     infoWindow.close()
                 }
@@ -113,7 +110,7 @@ class ViewPlaceMapActivity : BaseActivity() {
             val startingPoint = LatLng(37.79304201000072, 127.07423972566195)
 
 
-            val mODsayService = ODsayService.init(mContext,resources.getString(R.string.odsay_key))
+            val mODsayService = ODsayService.init(mContext, resources.getString(R.string.odsay_key))
 
             mODsayService.requestSearchPubTransPath(
                 startingPoint.longitude.toString(),
@@ -123,7 +120,7 @@ class ViewPlaceMapActivity : BaseActivity() {
                 null,
                 null,
                 null,
-                object : OnResultCallbackListener{
+                object : OnResultCallbackListener {
                     override fun onSuccess(p0: ODsayData?, p1: API?) {
 
 
@@ -139,7 +136,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                        만약 추천경로가 안나오면 중간 좌표추가 X
 
-                        if ( pathArr.length() > 0){
+                        if (pathArr.length() > 0) {
 
                             val firstRecommendPath = pathArr.getJSONObject(0)
 
@@ -147,22 +144,20 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                            세부 경로들 하나씩 꺼내보자 -> 정거장 목록이 있는가 ? 추가검사
 
-                            for ( i in 0 until subPathArr.length()) {
+                            for (i in 0 until subPathArr.length()) {
 
                                 val subPathObj = subPathArr.getJSONObject(i)
 
 //                                정거장 목록이 null이 아닌가? =>  내려 주는가?
 
-                                if ( !subPathObj.isNull("passStopList")) {
+                                if (!subPathObj.isNull("passStopList")) {
 
 //                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
-
-                                    //                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
 
                                     val passStopListObj = subPathObj.getJSONObject("passStopList")
                                     val stationsArr = passStopListObj.getJSONArray("stations")
 
-                                    for ( j in 0 until stationsArr.length()){
+                                    for (j in 0 until stationsArr.length()) {
 
                                         val stationsObj = stationsArr.getJSONObject(j)
 
@@ -173,13 +168,11 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                                        네이버 지도 좌표로 가공
 
-                                        val naverLatLng = LatLng(lat,lng)
+                                        val naverLatLng = LatLng(lat, lng)
 
 //                                        교통 좌표 목록에 추가
 
                                         transCoords.add(naverLatLng)
-
-
 
 
                                     }
@@ -189,7 +182,6 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 
                             }
-
 
 
                         }
@@ -217,8 +209,6 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 
         }
-
-
 
 
     }

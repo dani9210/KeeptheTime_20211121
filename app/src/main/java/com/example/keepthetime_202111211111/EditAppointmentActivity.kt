@@ -18,6 +18,7 @@ import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
 import com.odsay.odsayandroidsdk.OnResultCallbackListener
+import okhttp3.HttpUrl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,6 +51,40 @@ class EditAppointmentActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+
+        binding.btnSearchPlace.setOnClickListener {
+
+            val inputPlace = binding.edtPlace.text.toString()
+
+//            장소 이름 => 위/경도 좌표로 변환.  =>   이런 기능의 API가 있는가?
+
+
+//            UI / 앱 기능 : 라이브러리 (지도, 소셜로그인)
+
+//            문구 => 다른 데이터 : Open API (장소 이름 => 위/경도 좌표)
+//            카카오 장소검색 API 활용.
+
+
+//            OkHttp라이브러리를 단발성으로 사용하는게 더 편할것으로 보임.
+//            retrofit 라이브러리에 내장된 OkHttp 라이브러리 활용.
+
+//            1. 어느 주소로 가야하는가 ? URL
+//            2. 어떤 파라미터?  query => URL을 만들때 같이 만들자.
+
+            val url = HttpUrl.parse("https://dapi.kakao.com/v2/local/search/keyword.json")!!.newBuilder()
+            url.addEncodedQueryParameter("query",inputPlace)
+
+            val urlString = url.toString()
+
+            Log.d("카카오장소검색주소",urlString)
+
+//            3. 1+2+메쏘드+헤더 종합 = >Request 만들기
+
+//            4. OkHttpClient를 이용해 실제 카카오 서버 호출
+
+
+        }
 
 
         binding.txtTime.setOnClickListener {
@@ -319,31 +354,32 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                            첫번째 경로만 활용 예정.
 
-                            if(pathArr.length() > 0 ) {
+                            if (pathArr.length() > 0) {
 
                                 val firstPath = pathArr.getJSONObject(0)
 
-                                Log.d("첫번째추천경로",firstPath.toString())
+                                Log.d("첫번째추천경로", firstPath.toString())
 
                                 val subPathArr = firstPath.getJSONArray("subPath")
 
 //                                모든 세부 경로 반복 파싱
 
-                                for ( i in 0 until subPathArr.length()){
+                                for (i in 0 until subPathArr.length()) {
 
                                     val subPathObj = subPathArr.getJSONObject(i)
 
 //                                    정거장 목록 - passStopList가 있을때만 내부 파싱.
 
-                                    if ( !subPathObj.isNull("passStopList")){
+                                    if (!subPathObj.isNull("passStopList")) {
 
-                                        val passStopListObj = subPathObj.getJSONObject("passStopList")
+                                        val passStopListObj =
+                                            subPathObj.getJSONObject("passStopList")
 
                                         val stationsArr = passStopListObj.getJSONArray("stations")
 
-                                        Log.d("정거장목록",stationsArr.toString())
+                                        Log.d("정거장목록", stationsArr.toString())
 
-                                        for( j in 0 until stationsArr.length() ) {
+                                        for (j in 0 until stationsArr.length()) {
 
                                             val stationObj = stationsArr.getJSONObject(j)
 
@@ -354,7 +390,7 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                                            네이버 지도에서 사용할 위치 객체로 변환
 
-                                            val stationLatLng = LatLng(lat,lng)
+                                            val stationLatLng = LatLng(lat, lng)
 
 //                                            경로에서 -> 표시할 중간 좌표로 추가등록.
 
@@ -368,7 +404,6 @@ class EditAppointmentActivity : BaseActivity() {
 
                                 }
                             }
-
 
 
 //                            도착지를 마지막 좌표로 등록
