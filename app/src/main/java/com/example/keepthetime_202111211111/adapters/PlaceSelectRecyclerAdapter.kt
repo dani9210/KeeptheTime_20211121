@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.keepthetime_202111211111.R
 import com.example.keepthetime_202111211111.datas.PlaceData
@@ -12,7 +13,18 @@ class PlaceSelectRecyclerAdapter(val mContext : Context ,val mList : List<PlaceD
 
     inner class PlaceViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
+//        멤버 변수 - list_item 내부의 UI
 
+        val txtPlaceName = row.findViewById<TextView>(R.id.txtPlaceName)
+
+
+//        함수 - 실제 데이터 연동 bind
+
+        fun bind( data : PlaceData ) {
+
+            txtPlaceName.text = data.placeName
+
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
@@ -23,6 +35,8 @@ class PlaceSelectRecyclerAdapter(val mContext : Context ,val mList : List<PlaceD
     }
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
+
+        holder.bind( mList[position])
 
     }
 
