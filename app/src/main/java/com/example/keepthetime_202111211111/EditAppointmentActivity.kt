@@ -21,6 +21,7 @@ import com.odsay.odsayandroidsdk.OnResultCallbackListener
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +70,7 @@ class EditAppointmentActivity : BaseActivity() {
 //            카카오 장소검색 API 활용.
 
 
-//            OkHttp라이브러리를 단발성으로 사용하는게 더 편할것으로 보임.
+//            OkHttp 라이브러리를 단발성으로 사용하는게 더 편할것으로 보임.
 //            retrofit 라이브러리에 내장된 OkHttp 라이브러리 활용.
 
 //            1. 어느 주소로 가야하는가 ? URL
@@ -90,7 +91,7 @@ class EditAppointmentActivity : BaseActivity() {
                 .header("Authorization","KakaoAK ${resources.getString(R.string.kakao_api_key)}")
                 .build()
 
-//            4. OkHttpClient를 이용해 실제 카카오 서버 호출
+//            4. OkHttpClient 를 이용해 실제 카카오 서버 호출
 
             val client = OkHttpClient()
             client.newCall(request).enqueue(object : okhttp3.Callback{
@@ -100,7 +101,20 @@ class EditAppointmentActivity : BaseActivity() {
 
                 override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
 
-//                    검색 결과 돌아옴 => 분석 (JSON 파싱) / UI반영
+//                    검색 결과 돌아옴 => 분석 (JSON 파싱) / UI 반영
+
+                    val jsonObj = JSONObject(response.body()!!.string())
+                    Log.d("검색결과응답",jsonObj.toString())
+
+                    val documentsArr = jsonObj.getJSONArray("documents")
+
+                    for (i in 0 until documentsArr.length()){
+
+                        val documentObj = documentsArr.getJSONObject(i)
+
+                        Log.d("검색결과 아이템",documentObj.toString())
+
+                    }
 
                 }
 
