@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_202111211111.databinding.ActivityEditAppointmentBinding
 import com.example.keepthetime_202111211111.datas.BasicResponse
+import com.example.keepthetime_202111211111.datas.PlaceData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.Marker
@@ -108,13 +109,26 @@ class EditAppointmentActivity : BaseActivity() {
 
                     val documentsArr = jsonObj.getJSONArray("documents")
 
+//                    장소 목록을 Arraylist에 담아두자.
+
+                    val placeList = ArrayList<PlaceData>()
+
                     for (i in 0 until documentsArr.length()){
 
                         val documentObj = documentsArr.getJSONObject(i)
 
                         Log.d("검색결과 아이템",documentObj.toString())
 
+                        val placeName = documentObj.getString("place_name")
+                        val lat = documentObj.getString("y").toDouble()
+                        val lng = documentObj.getString("x").toDouble()
+
+                        val placeData = PlaceData(placeName,lat,lng)
+                        placeList.add(placeData)
+
                     }
+
+//                    검색 결과로 찾아낸 장소 목록이 전부 추가됨.  => UI에서 활용?
 
                 }
 
