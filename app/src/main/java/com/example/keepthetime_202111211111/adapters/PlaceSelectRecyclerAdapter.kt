@@ -11,6 +11,14 @@ import com.example.keepthetime_202111211111.datas.PlaceData
 
 class PlaceSelectRecyclerAdapter(val mContext : Context ,val mList : List<PlaceData>) : RecyclerView.Adapter<PlaceSelectRecyclerAdapter.PlaceViewHolder>() {
 
+//    장소 선택 리싸이클러뷰의 클릭 이벤트 => 액티비티 or 프래그먼트 등등으로 할일을 넘겨주자.  (interface 활용)
+
+    interface OnItemClickListener {
+
+        fun onItemClick( position: Int)
+
+    }
+
     inner class PlaceViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
 //        멤버 변수 - list_item 내부의 UI
