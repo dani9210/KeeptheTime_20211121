@@ -162,7 +162,16 @@ class EditAppointmentActivity : BaseActivity() {
                         placeAdapter.onItemClickListener  = object  : PlaceSelectRecyclerAdapter.OnItemClickListener{
                             override fun onItemClick(data: PlaceData) {
 
-                                Toast.makeText(mContext, data.placeName, Toast.LENGTH_SHORT).show()
+//                                임시기능 : 토스트로 가게이름 출력
+//                                Toast.makeText(mContext, data.placeName, Toast.LENGTH_SHORT).show()
+
+//                                실제 기능 : 장소를 선택한곳으로 직접 지정하기.
+
+                                setPlaceDataToNaverMap(data)
+
+//                                추가기능 : 열려있는 팝업창 닫기
+
+
 
                             }
 
@@ -578,5 +587,15 @@ class EditAppointmentActivity : BaseActivity() {
     override fun onLowMemory() {
         super.onLowMemory()
         binding.naverMapView.onLowMemory()
+    }
+
+//    장소를 선택하면 => 지도에 반영해주는 함수
+
+    fun setPlaceDataToNaverMap( placeData : PlaceData){
+
+//        약속장소 입력값 변경
+
+        binding.edtPlace.setText(placeData.placeName )
+
     }
 }
