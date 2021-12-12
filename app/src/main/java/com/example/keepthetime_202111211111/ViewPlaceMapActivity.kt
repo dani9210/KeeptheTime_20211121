@@ -127,6 +127,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 
                         val jsonObj = p0!!.json
 
+
                         val transCoords = ArrayList<LatLng>()
 
                         transCoords.add(startingPoint)
@@ -134,24 +135,32 @@ class ViewPlaceMapActivity : BaseActivity() {
                         val resultObj = jsonObj.getJSONObject("result")
                         val pathArr = resultObj.getJSONArray("path")
 
+//                        만약 추천경로가 안나오면 중간 좌표추가 X
+
                         if ( pathArr.length() > 0){
 
-                            val fristObj = pathArr.getJSONObject(0)
+                            val firstRecommendPath = pathArr.getJSONObject(0)
 
-                            val subPathArr = fristObj.getJSONArray("subpath")
+                            val subPathArr = firstRecommendPath.getJSONArray("subPath")
+
+//                            세부 경로들 하나씩 꺼내보자 -> 정거장 목록이 있는가 ? 추가검사
 
                             for ( i in 0 until subPathArr.length()) {
 
                                 val subPathObj = subPathArr.getJSONObject(i)
 
+//                                정거장 목록이 null이 아닌가? =>  내려 주는가?
+
                                 if ( !subPathObj.isNull("passStopList")) {
 
+//                                    실제 정거장 목록 추출 -> tranCoords에 추가등록
+
                                     val passStopListObj = subPathObj.getJSONObject("passStopList")
-                                    val staionsArr = passStopListObj.getJSONArray("stations")
+                                    val stationsArr = passStopListObj.getJSONArray("stations")
 
-                                    for ( j in 0 until staionsArr.length()){
+                                    for ( j in 0 until stationsArr.length()){
 
-                                        val stationsObj = staionsArr.getJSONObject(j)
+                                        val stationsObj = stationsArr.getJSONObject(j)
 
                                         val lat = stationsObj.getString("y").toDouble()
                                         val lng = stationsObj.getString("x").toDouble()
@@ -173,6 +182,8 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 
                         }
+
+//                        마지막좌표 : 도착지를 등록.
                         transCoords.add(coord)
 
 
