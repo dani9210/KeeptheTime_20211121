@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.keepthetime_202111211111.adapters.PlaceSelectRecyclerAdapter
+import com.example.keepthetime_202111211111.adapters.StartingPointSpinnerAdapter
 import com.example.keepthetime_202111211111.databinding.ActivityEditAppointmentBinding
 import com.example.keepthetime_202111211111.datas.BasicResponse
 import com.example.keepthetime_202111211111.datas.PlaceData
@@ -54,7 +55,11 @@ class EditAppointmentActivity : BaseActivity() {
 
 //    서버에서 받아오는 출발지 목록을 담아줄 Arraylist
 
-    val mStrtingPointList = ArrayList<PlaceData>()
+    val mStartingPointList = ArrayList<PlaceData>()
+
+//    출발지 목록을 스피너에 뿌려줄 어댑터
+
+    lateinit var mStartingPointAdapter : StartingPointSpinnerAdapter
 
     lateinit var binding: ActivityEditAppointmentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -425,6 +430,9 @@ class EditAppointmentActivity : BaseActivity() {
         }
         getStartingPointFromServer()
 
+        mStartingPointAdapter = StartingPointSpinnerAdapter(mContext,R.layout.starting_point_list_item,mStartingPointList)
+        binding.startingPointSpinner.adapter = mStartingPointAdapter
+
     }
 
     fun getStartingPointFromServer(){
@@ -437,8 +445,10 @@ class EditAppointmentActivity : BaseActivity() {
                 if (response.isSuccessful){
 
                     val br = response.body()!!
-                    mStrtingPointList.clear()
-                    mStrtingPointList.addAll(br.data.places)
+                    mStartingPointList.clear()
+                    mStartingPointList.addAll(br.data.places)
+
+                    mStartingPointAdapter.notifyDataSetChanged()
 
                 }
 
