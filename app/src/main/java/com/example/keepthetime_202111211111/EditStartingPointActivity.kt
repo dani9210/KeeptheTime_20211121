@@ -2,14 +2,20 @@ package com.example.keepthetime_202111211111
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_202111211111.databinding.ActivityEditStartingPointBinding
+import com.example.keepthetime_202111211111.datas.BasicResponse
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.Marker
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EditStartingPointActivity : BaseActivity() {
 
+    var mSelectedLatLng: LatLng? = null
     var mSelectedMarker: Marker? = null
 
     lateinit var binding : ActivityEditStartingPointBinding
@@ -22,6 +28,47 @@ class EditStartingPointActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.btnSaveStartingPoint.setOnClickListener {
+
+
+
+            val inputPlace = binding.edtPlace.text.toString()
+
+            apiService.postRequestAddPlace(
+                inputPlace,
+                mSelectedLatLng!!.latitude,
+                mSelectedLatLng!!.longitude,
+                true).enqueue(object : Callback<BasicResponse>{
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                }
+
+
+            })
+
+
+
+
+            if (mSelectedLatLng == null) {
+
+                Toast.makeText(mContext, "약속 장소를 지도에서 선택해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            }
+
+
+
+        }
+
+
 
     }
 

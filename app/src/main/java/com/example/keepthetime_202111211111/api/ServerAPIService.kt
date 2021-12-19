@@ -82,6 +82,18 @@ interface ServerAPIService {
     @GET("/appointment")
     fun getRequestAppointment() : Call<BasicResponse>
 
+//  내 출발 장소 등록
+
+    @FormUrlEncoded
+    @POST("/user/place")
+    fun postRequestAddPlace(
+        @Field("name") name: String,
+        @Field("latitude") lat: Double,
+        @Field("longitude") lng: Double,
+        @Field("is_primary")  is_primary : Boolean
+    ) : Call<BasicResponse>
+
+
 
 //    연습 - 내 정보 가져오기 API
 
