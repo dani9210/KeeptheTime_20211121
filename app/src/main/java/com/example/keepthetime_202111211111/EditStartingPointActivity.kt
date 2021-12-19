@@ -41,8 +41,7 @@ class EditStartingPointActivity : BaseActivity() {
 //                marker.position = latLng
 //                marker.map = naverMap
 
-                val cameraUpdate = CameraUpdate.scrollTo(latLng)
-                naverMap.moveCamera(cameraUpdate)
+
 
 
 
@@ -57,7 +56,10 @@ class EditStartingPointActivity : BaseActivity() {
                 mSelectedMarker!!.position = latLng
                 mSelectedMarker!!.map = naverMap
 
+//                클릭한 위치 (latlng) 로 카메라 이동 => 마커가 가운데 위치
 
+                val cameraUpdate = CameraUpdate.scrollTo(latLng)
+                naverMap.moveCamera(cameraUpdate)
 
 
             }
