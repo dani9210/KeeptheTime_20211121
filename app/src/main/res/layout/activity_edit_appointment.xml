@@ -102,11 +102,23 @@
             android:layout_height="wrap_content"
             android:text="약속 장소 지도 선택"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="같이갈 친구 추가"/>
+
+        <EditText
+            android:id="@+id/edtAddFriend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="같이갈 친구 번호를 입력하세요"/>
 
         <com.naver.maps.map.MapView
             android:id="@+id/naverMapView"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="180dp" />
 
 
         <Button

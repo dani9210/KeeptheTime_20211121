@@ -90,16 +90,37 @@ class ViewPlaceMapActivity : BaseActivity() {
 
             infoWindow.open(marker)
 
+            val infoWindow2 = InfoWindow()
+            infoWindow2.open(startingMarker)
+
             naverMap.setOnMapClickListener { pointF, latLng ->
 
 //                지도 아무데나 클릭하면, 정보창 닫기
 
                 infoWindow.close()
+                infoWindow2.close()
 
 
             }
 
 
+
+            startingMarker.setOnClickListener {
+                if (startingMarker.infoWindow == null) {
+
+                    infoWindow2.open(startingMarker)
+
+                }
+                else{
+                    infoWindow2.close()
+
+
+                }
+                return@setOnClickListener true
+
+
+
+            }
             marker.setOnClickListener {
 
                 if (marker.infoWindow == null) {
@@ -222,10 +243,12 @@ class ViewPlaceMapActivity : BaseActivity() {
 //                                말풍선에 들어갈 xml그리고 => inflate => getContentView 함수의 결과로 지정.
                                 val view = LayoutInflater.from(mContext).inflate(R.layout.place_info_window_view,null)
 
+
                                 val txtPlaceName = view.findViewById<TextView>(R.id.txtPlaceName)
                                 txtPlaceName.text = mScheduleData.place
 
                                 val txtRequireTime = view.findViewById<TextView>(R.id.txtRequireTime)
+
 
 //                                길찾기 API가 알려주는 (jsonObj안에 저장됨) 예상시간을 가지고 문구로 설정.
 
@@ -237,6 +260,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 
                                 val infoObj = firstPath.getJSONObject("info")
                                 val totalTime = infoObj.getInt("totalTime")
+
 
 //                              60분 넘느냐 아니냐 로 따로  문구 세팅.
 
@@ -258,11 +282,25 @@ class ViewPlaceMapActivity : BaseActivity() {
                                      txtRequireTime.text = "${totalTime}분 소요"
                                  }
 
-//                                txtRequireTime =
+
+
 
                                 return view
 
                             }
+                        }
+
+                        infoWindow2.adapter = object : InfoWindow.DefaultViewAdapter(mContext){
+                            override fun getContentView(p0: InfoWindow): View {
+                                val view = LayoutInflater.from(mContext).inflate(R.layout.plaace_start_point_view,null)
+
+                                val txtStartPointPlaceName = view.findViewById<TextView>(R.id.txtStartPointPlaceName)
+                                txtStartPointPlaceName.text = mScheduleData.startPlace
+
+                                return view
+                            }
+
+
                         }
 
                     }

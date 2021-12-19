@@ -80,7 +80,8 @@ interface ServerAPIService {
         @Field("start_longitude") startLng : Double,
         @Field("place")  place: String,
         @Field("latitude")  lat : Double,
-        @Field("longitude")  lng : Double
+        @Field("longitude")  lng : Double,
+        @Field("friend_list") friendList : String
         ) : Call<BasicResponse>
 
     @GET("/appointment")
@@ -101,6 +102,12 @@ interface ServerAPIService {
 
     @GET("/user/place")
     fun getRequestStartingPointList() : Call<BasicResponse>
+
+//    삭제하기
+    @DELETE("/appointment")
+    fun  deleteRequestDeleteAppointment(
+    @Field("appointment_id") appointmentId : Int
+)  :Call<BasicResponse>
 
 //    연습 - 내 정보 가져오기 API
 

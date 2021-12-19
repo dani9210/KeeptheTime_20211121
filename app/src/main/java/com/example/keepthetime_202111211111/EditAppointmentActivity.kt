@@ -425,6 +425,7 @@ class EditAppointmentActivity : BaseActivity() {
             val finalDateTimeStr = serverFormat.format(mSelectedDateTime.time)
 
             val inputPlace = binding.edtPlace.text.toString()
+            val inputAddFriend = binding.edtAddFriend.text.toString()
 
 //            val inputLat = binding.edtLatitude.text.toString().toDouble()
 //            val inputLng = binding.edtLongitude.text.toString().toDouble()
@@ -438,7 +439,8 @@ class EditAppointmentActivity : BaseActivity() {
                 mSelectedStartingPoint!!.longitude,
                 inputPlace,
                 mSelectedLatLng!!.latitude,
-                mSelectedLatLng!!.longitude
+                mSelectedLatLng!!.longitude,
+                inputAddFriend
             ).enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(
                     call: Call<BasicResponse>,
