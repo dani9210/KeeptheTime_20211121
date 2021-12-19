@@ -93,7 +93,10 @@ interface ServerAPIService {
         @Field("is_primary")  isPrimary : Boolean
     ) : Call<BasicResponse>
 
+//   내 출발 장소 목록
 
+    @GET("/user/place")
+    fun getRequestStartingPointList() : Call<BasicResponse>
 
 //    연습 - 내 정보 가져오기 API
 

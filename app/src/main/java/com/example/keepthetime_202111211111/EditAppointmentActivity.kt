@@ -52,6 +52,10 @@ class EditAppointmentActivity : BaseActivity() {
 
     var mPath: PathOverlay? = null
 
+//    서버에서 받아오는 출발지 목록을 담아줄 Arraylist
+
+    val mStrtingPointList = ArrayList<PlaceData>()
+
     lateinit var binding: ActivityEditAppointmentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -419,6 +423,32 @@ class EditAppointmentActivity : BaseActivity() {
 
 
         }
+        getStartingPointFromServer()
+
+    }
+
+    fun getStartingPointFromServer(){
+
+//        서버에서 가져와야함 : API 활용.
+
+        apiService.getRequestStartingPointList().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if (response.isSuccessful){
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+
+
+        })
+
+
 
     }
 
