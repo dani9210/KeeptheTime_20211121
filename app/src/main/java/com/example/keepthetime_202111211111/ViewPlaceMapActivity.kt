@@ -3,6 +3,7 @@ package com.example.keepthetime_202111211111
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_202111211111.databinding.ActivityViewPalceMapBinding
 import com.example.keepthetime_202111211111.datas.ScheduleData
@@ -206,6 +207,10 @@ class ViewPlaceMapActivity : BaseActivity() {
 
 //                                말풍선에 들어갈 xml그리고 => inflate => getContentView 함수의 결과로 지정.
                                 val view = LayoutInflater.from(mContext).inflate(R.layout.place_info_window_view,null)
+
+                                val txtPlaceName = view.findViewById<TextView>(R.id.txtPlaceName)
+                                txtPlaceName.text = mScheduleData.place
+
                                 return view
 
                             }
