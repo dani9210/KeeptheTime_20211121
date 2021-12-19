@@ -310,7 +310,7 @@ class LoginActivity : BaseActivity() {
 
     override fun setValues() {
 
-        getKeyHash()
+       getKeyHash()
 
 //        페북 로그인 - 콜백 관리 기능 생성
         callbackManager = CallbackManager.Factory.create()
@@ -325,18 +325,17 @@ class LoginActivity : BaseActivity() {
     }
 
 
-    fun getKeyHash() {
+  fun getKeyHash() {
 
-        val info = packageManager.getPackageInfo(
-            "com.example.keepthetime_20211121",
+       val info = packageManager.getPackageInfo(
+           "com.example.keepthetime_20211121",
             PackageManager.GET_SIGNATURES
         )
-        for (signature in info.signatures) {
+       for (signature in info.signatures) {
             val md: MessageDigest = MessageDigest.getInstance("SHA")
             md.update(signature.toByteArray())
             Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
-        }
-
+       }
 
     }
 }

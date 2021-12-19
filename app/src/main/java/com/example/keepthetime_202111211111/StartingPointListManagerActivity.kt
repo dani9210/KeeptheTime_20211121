@@ -1,5 +1,6 @@
 package com.example.keepthetime_202111211111
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -16,6 +17,12 @@ class StartingPointListManagerActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.btnAddStartingPoint.setOnClickListener {
+
+            val myIntent = Intent(mContext,EditStartingPointActivity::class.java)
+            startActivity(myIntent)
+        }
 
     }
 
