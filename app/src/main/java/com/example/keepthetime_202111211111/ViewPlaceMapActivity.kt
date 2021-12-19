@@ -63,13 +63,13 @@ class ViewPlaceMapActivity : BaseActivity() {
 //            추가 기능 체험 - 정보창( 말풍선) => 마커에 반영
 
             val infoWindow = InfoWindow()
-            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
-                override fun getText(p0: InfoWindow): CharSequence {
-                    return mScheduleData.place
-                }
-
-
-            }
+//            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
+//                override fun getText(p0: InfoWindow): CharSequence {
+//                    return mScheduleData.place
+//                }
+//
+//
+//            }
 
             infoWindow.open(marker)
 
@@ -195,6 +195,15 @@ class ViewPlaceMapActivity : BaseActivity() {
                         path.coords = transCoords
                         path.map = naverMap
 
+
+//                        말풍선의 내용을, 경로찾기가 끝나고 나서 세팅.
+                        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext){
+                            override fun getText(p0: InfoWindow): CharSequence {
+                                return mScheduleData.place
+                            }
+
+
+                        }
 
                     }
 
