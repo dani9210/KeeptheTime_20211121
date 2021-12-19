@@ -1,4 +1,5 @@
 package com.example.keepthetime_202111211111.datas
+import com.google.gson.annotations.SerializedName
 
 class PlaceData(
 
