@@ -86,11 +86,11 @@ interface ServerAPIService {
 
     @FormUrlEncoded
     @POST("/user/place")
-    fun postRequestAddPlace(
+    fun postRequestAddStartingPoint(
         @Field("name") name: String,
         @Field("latitude") lat: Double,
         @Field("longitude") lng: Double,
-        @Field("is_primary")  is_primary : Boolean
+        @Field("is_primary")  isPrimary : Boolean
     ) : Call<BasicResponse>
 
 

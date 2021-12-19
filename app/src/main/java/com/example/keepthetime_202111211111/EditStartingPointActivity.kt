@@ -1,6 +1,5 @@
 package com.example.keepthetime_202111211111
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -33,10 +32,10 @@ class EditStartingPointActivity : BaseActivity() {
 
 
 
-            val inputPlace = binding.edtPlace.text.toString()
+            val inputName = binding.edtPlaceName.text.toString()
 
-            apiService.postRequestAddPlace(
-                inputPlace,
+            apiService.postRequestAddStartingPoint(
+                inputName,
                 mSelectedLatLng!!.latitude,
                 mSelectedLatLng!!.longitude,
                 true).enqueue(object : Callback<BasicResponse>{
@@ -44,6 +43,8 @@ class EditStartingPointActivity : BaseActivity() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
+
+
 
                 }
 
@@ -57,12 +58,7 @@ class EditStartingPointActivity : BaseActivity() {
 
 
 
-            if (mSelectedLatLng == null) {
 
-                Toast.makeText(mContext, "약속 장소를 지도에서 선택해주세요", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-
-            }
 
 
 
@@ -107,6 +103,10 @@ class EditStartingPointActivity : BaseActivity() {
 
                 val cameraUpdate = CameraUpdate.scrollTo(latLng)
                 naverMap.moveCamera(cameraUpdate)
+
+//                선택된 위치를 서버에 보낼때 활용. 멤버변수에 선택된 위치를 저장.
+
+                mSelectedLatLng = latLng
 
 
             }
