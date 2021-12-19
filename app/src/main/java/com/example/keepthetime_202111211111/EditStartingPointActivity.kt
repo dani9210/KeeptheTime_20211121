@@ -22,6 +22,8 @@ class EditStartingPointActivity : BaseActivity() {
 
     override fun setValues() {
 
+        binding.naverMapView.
+
 
     }
     override fun onStart() {
