@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>
+            <item>친구 약속</item>
+            <item>업무 일정</item>
+            <item>개인 일정</item>
+            
+        </item>
+        
+    </string-array>
+    
+</resources>

@@ -22,6 +22,7 @@ import com.example.keepthetime_202111211111.datas.PlaceData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
@@ -52,6 +53,10 @@ class EditAppointmentActivity : BaseActivity() {
 
     var mSelectedLatLng: LatLng? = null
     var mSelectedMarker: Marker? = null
+
+//    출발지를 보여줄 마커
+
+    var mStartingPointMarker : Marker? = null
 
     var mPath: PathOverlay? = null
 
@@ -86,6 +91,12 @@ class EditAppointmentActivity : BaseActivity() {
 //                position (p2) 변수가, 선택한 아이템이 몇번쨰 아이템인지 알려주는 역할.
 
                 mSelectedStartingPoint = mStartingPointList[position]
+
+//                선택한 출발지의 위치를 커스텀 마커로 띄워보자.
+
+
+
+
 
 //                Toast.makeText(mContext, selectedStartingPoint.placeName, Toast.LENGTH_SHORT).show()
 
@@ -577,6 +588,17 @@ class EditAppointmentActivity : BaseActivity() {
 
             mSelectedMarker!!.position = latLng
             mSelectedMarker!!.map = naverMap
+
+
+            if(mStartingPointMarker==null) {
+
+                mStartingPointMarker = Marker()
+
+            }
+
+            mStartingPointMarker!!.position = LatLng(mSelectedStartingPoint.latitude,mSelectedStartingPoint.longitude)
+            mStartingPointMarker!!.map = naverMap
+            mStartingPointMarker!!.icon =OverlayImage.fromResource(R.drawable.marker_starting_point)
 
 
 //
