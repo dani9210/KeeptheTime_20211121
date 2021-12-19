@@ -34,6 +34,20 @@ class EditStartingPointActivity : BaseActivity() {
 
             val inputName = binding.edtPlaceName.text.toString()
 
+//            잣오 이름이 2자 이상이어야 진행 되도록
+            if (inputName.length < 2) {
+
+                Toast.makeText(mContext, "장소를 두글자이상 입력해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (mSelectedLatLng == null) {
+
+                Toast.makeText(mContext, "약속 장소를 지도에서 선택해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            }
+
             apiService.postRequestAddStartingPoint(
                 inputName,
                 mSelectedLatLng!!.latitude,
@@ -44,6 +58,19 @@ class EditStartingPointActivity : BaseActivity() {
                     response: Response<BasicResponse>
                 ) {
 
+//                    응답이 최종 성공 => 장소등록 성공 토스트
+
+                    if(response.isSuccessful) {
+
+                        Toast.makeText(mContext, "출발 장소 등록에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+
+
+                    else{
+
+                        Toast.makeText(mContext, "출발 장소 등록에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    }
 
 
                 }
