@@ -11,6 +11,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
@@ -22,6 +23,8 @@ class ViewPlaceMapActivity : BaseActivity() {
     lateinit var binding: ActivityViewPalceMapBinding
 
     lateinit var mScheduleData: ScheduleData
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +58,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 //            위치 (좌표)  데이터 객체
 
             val coord = LatLng(mScheduleData.latitude, mScheduleData.longitude)
+            val startingPointCoord = LatLng(mScheduleData.startLatitude,mScheduleData.startLongitude)
 
             val cameraUpdate = CameraUpdate.scrollTo(coord)
             naverMap.moveCamera(cameraUpdate)
@@ -62,6 +66,16 @@ class ViewPlaceMapActivity : BaseActivity() {
             val marker = Marker()
             marker.position = coord
             marker.map = naverMap
+
+
+            val startingMarker = Marker()
+
+            startingMarker.position =  startingPointCoord
+            startingMarker.map = naverMap
+            startingMarker.icon = OverlayImage.fromResource(R.drawable.marker_starting_point)
+
+
+
 
 //            추가 기능 체험 - 정보창( 말풍선) => 마커에 반영
 
@@ -110,7 +124,7 @@ class ViewPlaceMapActivity : BaseActivity() {
 //            출발지 정보~ 도착지 API 호출
 //            or 본인 집 좌표 직접 출발지 지정
 
-            val startingPoint = LatLng(37.79304201000072, 127.07423972566195)
+            val startingPoint = LatLng(mScheduleData.startLatitude, mScheduleData.startLongitude)
 
 
             val mODsayService = ODsayService.init(mContext, resources.getString(R.string.odsay_key))
