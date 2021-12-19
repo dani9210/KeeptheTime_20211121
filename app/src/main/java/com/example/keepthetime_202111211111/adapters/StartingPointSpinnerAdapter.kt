@@ -15,7 +15,11 @@ class StartingPointSpinnerAdapter(
     val mList : List<PlaceData>
     ) : ArrayAdapter<PlaceData>(mContext,resId,mList) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+//    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+//
+//    }
+
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         var tempRow = convertView
 
@@ -36,5 +40,6 @@ class StartingPointSpinnerAdapter(
         txtPlaceName.text= data.placeName
 
         return row
+
     }
 }
