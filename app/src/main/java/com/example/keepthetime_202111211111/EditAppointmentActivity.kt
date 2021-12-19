@@ -425,6 +425,7 @@ class EditAppointmentActivity : BaseActivity() {
             val finalDateTimeStr = serverFormat.format(mSelectedDateTime.time)
 
             val inputPlace = binding.edtPlace.text.toString()
+
 //            val inputLat = binding.edtLatitude.text.toString().toDouble()
 //            val inputLng = binding.edtLongitude.text.toString().toDouble()
 
@@ -432,6 +433,9 @@ class EditAppointmentActivity : BaseActivity() {
             apiService.postRequestAppointment(
                 inputTitle,
                 finalDateTimeStr,
+                mSelectedStartingPoint.placeName,
+                mSelectedStartingPoint!!.latitude,
+                mSelectedStartingPoint!!.longitude,
                 inputPlace,
                 mSelectedLatLng!!.latitude,
                 mSelectedLatLng!!.longitude

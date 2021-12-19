@@ -1,5 +1,6 @@
 package com.example.keepthetime_202111211111.api
 
+import android.system.StructTimespec
 import com.example.keepthetime_202111211111.datas.BasicResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -74,6 +75,9 @@ interface ServerAPIService {
     fun postRequestAppointment(
         @Field("title") title : String,
         @Field("datetime")  datetime :String,
+        @Field("start_place") startPlace : String,
+        @Field("start_latitude") startLat : Double,
+        @Field("start_longitude") startLng : Double,
         @Field("place")  place: String,
         @Field("latitude")  lat : Double,
         @Field("longitude")  lng : Double

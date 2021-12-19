@@ -55,6 +55,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txtStartPointPlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="출발 장소 선택"/>
